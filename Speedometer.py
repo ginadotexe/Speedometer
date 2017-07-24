@@ -45,7 +45,8 @@ def get_pulse(number):
     multiplier = 3600/elapse
     speed = (wheel_c*multiplier)/100000
     rpm = 1/elapse *60
-    
+   #below is the converter from kmph to mph 
+    #speed = speed*0.621371
 
     start = time.time()
 
@@ -55,12 +56,12 @@ try:
     time.sleep(1)
     GPIO.add_event_detect(hall,GPIO.FALLING,callback = get_pulse,bouncetime=20)
     while True:
-        time.sleep(elapse) #trying to make the display update with each pass of the hall sensor
+        time.sleep(.5) #trying to make the display update with each pass of the hall sensor
         print('rpm:{0:.1f} speed:{1:.0f} distance:{2}'.format(rpm,speed,distance)) #this only prints rpm, speed, and distance
         
 
 
 except KeyboardInterrupt:
-    print('Guess that's the end of your trip, huh?')
+    print('Guess that\'s the end of your trip, huh?')
     GPIO.cleanup()
 
